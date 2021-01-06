@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /impressum
+Disallow: /impressum.html
+Disallow: /myprofile
+Disallow: /nachrichten
+Disallow: /member
+Disallow: /datenschutzerklaerung
