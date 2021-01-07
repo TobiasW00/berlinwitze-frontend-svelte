@@ -1,79 +1,83 @@
 <script>
 import StartInfobox from '../components/startpageinfobox/startpageinfobox.svelte';
 import RegisterUserBox from '../components/register/register.svelte';
-import {onMount} from 'svelte';
-import {addAction} from '../api/dbconnection';
+import StartpageGallerybox from '../components/startboxes/startboxpicturebox.svelte';
+import StartpageInfobox from '../components/startboxes/startpageinfobox.svelte';
 import {user} from '../userstore.js';
 import Loginbox from '../components/login/loginbox.svelte';
-import { dict, locale, t } from '../i18njs.js';
-import translations from '../translations.js';
-let showloginform = false;
+import {pictures} from '../data/startpagepictures_store';
+import witze from '../witzestore.js'; 
+import members from '../data/member_store.js';
+import {HTTP_URL} from '../config.js';
+let showloginform = true;
+export let witzearr;
+export let picturesarr = [];
+export let membersarr;
 
-
-
-  $: languages = Object.keys(translations);
-  $: dict.set(translations);
 
 </script>
 
-<style>
-.grid
-{
-	display:  grid;
-	grid-template-columns: auto auto;
-	grid-column-gap: 10px;
-}
-@media (max-width: 1000px) {
-.grid
-{
-	grid-template-columns: auto;
-	grid-template-rows: auto auto;
-	grid-row-gap: 10px;
-}
-}
 
-.box
-{
-	border:2px solid black;
-	display: inline-block;
-	border-radius: 20px;
-	overflow: hidden;
-}
-.box > div:first-child
-{
-	background:blueviolet;
-	overflow:hidden;
-	text-align: center;
-	color:white;
-}
-#textbody
-{
-   font-size: 1rem;
-}
-.boxcontent h3
-{
-	margin:0;
-	font-size: 1.1rem;
-}
-.boxcontent
-{
-padding:10px;
-}
-ul li
-{
-	font-weight: 400;
-}
-.boxcontent a
-{
-	text-decoration: none;
-	color:black;
-}
-h2
-{
-	font-size: 1.5rem;
-	margin:0;
-}
-</style>
+<script context="module">
+	let witze_value;
+	let members_value;
+	let pictures_value;
+	
+	
+	export async function preload({ params, query }) {
+
+	const unsubscribeWitze = witze.subscribe(value => {
+		witze_value = value;
+		});
+			
+	const unsubscribeMembers = members.subscribe(value => {
+		members_value = value;
+		});
+
+	const unsubscribePictures = pictures.subscribe(value => {
+		pictures_value = value;
+		});
+	
+				if(pictures_value.length ===0 || members_value.length ===0 || witze_value.length ===0)
+				{
+				const res = await this.fetch(`${HTTP_URL}/api/startinfo`);
+				const text = await res.json();
+				if (res.status === 200) {	
+							witze.set(text.content.witze);
+							members.set(text.content.users);
+							pictures.set(text.content.pictures);
+							return {witzearr: text.content.witze,picturesarr:text.content.pictures,membersarr:text.content.users};
+					} else {
+						console.log(res.status + data.message);
+				}
+				}else
+				{
+					return {witzearr: witze_value,picturesarr:pictures_value,membersarr:members_value};
+				}
+			
+	
+	
+		}
+	
+	</script>
+
+<style>
+	.grid
+	{
+		display:  grid;
+		grid-template-columns: auto auto;
+		grid-column-gap: 10px;
+	}
+	@media (max-width: 1000px) {
+	.grid
+	{
+		grid-template-columns: auto;
+		grid-template-rows: auto auto;
+		grid-row-gap: 10px;
+	}
+	}	
+	
+	</style>
 
 <svelte:head>
 	<title>Berlin Witze</title>
@@ -86,37 +90,23 @@ h2
 </svelte:head>
 <div id="textbody">
 
-	<h1>{$t('title.helloworld')}</h1>
-{#if !$user}
 	<div class="grid">
-		<div class="box">
 		<div>
-		<h2>Warum?</h2>
-		</div>
-		<div class="boxcontent">
-			Dies ist eine Svelte/Sapper Testanwendung, um erste Erfahrungen zu sammeln.
-			<ul>
-			<li><h3><a href="/witz">Witzesammlung</a></h3>
-				Sammlung an Witzen, primär über Berlin.</li>
-			<li><h3><a href="/member">Mitglieder</a></h3>
-				Profilseiten der Witzbolde</li>
-			<li><h3><a href="/videos">Videos</a></h3>
-			Sammlung lustiger YouTube Clips</li>
-			<li><h3><a href="/gallery">Bilder</a></h3>
-			Comics und Bilder zum schmunzeln.</li>
-		</ul>
-			
-		</div>
-	</div>
-{#if showloginform}
-<Loginbox on:showregisterform={()=>{showloginform=false;}}/>
-{:else}
-<RegisterUserBox on:showloginform={()=>{showloginform=true;}}/>
+			<StartInfobox members={membersarr} witze={witzearr}/>
+			<StartpageGallerybox pictures={picturesarr} />
+			<StartpageInfobox />
+		</div>		
+		<div>
+{#if !$user}
+		{#if showloginform}
+		<Loginbox on:showregisterform={()=>{showloginform=false;}}/>
+		{:else}
+		<RegisterUserBox on:showloginform={()=>{showloginform=true;}}/>
+		{/if}	
+	
 {/if}
 </div>
-{/if}
+</div>
 
-
-<StartInfobox />
 </div>
 

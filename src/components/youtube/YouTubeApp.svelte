@@ -1,5 +1,6 @@
 <script>
 import { onMount } from "svelte";
+import Gallery from "../Gallery.svelte";
 import Youtube from './youtubecomponents/Youtube.svelte';
 export let playlistId;
 export let key;
@@ -83,9 +84,11 @@ function loadMoreTrigger(newyoutubekotekn)
 	<meta property="og:title" content="{videocount} YouTube Videos" />
 </svelte:head>
 <div style="text-align:center;">
-{#each videos as video , i (video.id) }			
-	<Youtube video={video} />			
-{/each}
+
+		{#each videos as video , i (video.id) }			
+			<Youtube video={video} />			
+		{/each}
+
 </div>
 <div id="loadmore" />
 

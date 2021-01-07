@@ -1,9 +1,9 @@
 {
 	"background_color": "#ffffff",
 	"theme_color": "#333333",
-	"name": "Erotik-witzn",
-	"short_name": "Erotik-witzn",
-	"description": "Teile erotische witzn",
+	"name": "Berlin Witze",
+	"short_name": "Berlin Witze",
+	"description": "Witze über Berlin",
 	 "lang": "de-DE",
 	"display": "minimal-ui",
 	"start_url": "/",

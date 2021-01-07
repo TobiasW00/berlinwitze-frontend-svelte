@@ -34,7 +34,6 @@ h2
 </style>
 {#if witze}
 	{#if witze.length > 0}
-	<div  class="grid-container" >
 		<div class="witzbox">
 		<div style="background:var(--main-witze-color);text-align:center;"><h2>Geschriebene Gags</h2></div>
 		<div style="padding:1rem; ">
@@ -45,6 +44,6 @@ h2
 		{/each}
 		</div>
 		</div>
-	</div>
+
 	{/if}
 {/if}

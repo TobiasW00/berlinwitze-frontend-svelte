@@ -26,7 +26,7 @@ const dispatch = createEventDispatcher();
     Ebenfalls können Sie eigene witzn auf svelte.berlin-witze.de veröffentlichen und so einer breiten öffentlichkeit zugänglich machen. Gleichermaßen können die von Ihnen eingestellten Texte von anderen Nutzern gelesen und kommentiert werden.
     </li>
     <li>
-    Beim Einstellen Ihrer Kurzgeschichten/witzn versichern Sie als Verfasserin/Verfasser, alleiniger Urheber des Textes zu sein und über sämtliche Rechte an den Texten uneingeschränkt und frei verfügen und diese publizieren dürfen.
+    Beim Einstellen Ihrer Witze versichern Sie als Verfasserin/Verfasser, alleiniger Urheber des Textes zu sein und über sämtliche Rechte an den Texten uneingeschränkt und frei verfügen und diese publizieren dürfen.
     </li>
     <li>
     Ferner versichern Sie als Verfasserin/Verfasser, dass die eingestellten Texte, Inhalte und Kommentare keine Rechte Dritter, insbesondere Persönlichkeitsrechte, Namensrechte, Urheberrechte, Leistungsschutzrechte, gewerbliche Schutzrechte oder sonstige Rechte beeinträchtigen oder verletzen und nicht pornografischer, jugendgefährdender, extremistischer, rassistischer oder gewaltverherrlichender Natur sind und auch keiner gesetzlichen oder behördlichen Verbreitungsbeschränkung unterliegen.
@@ -42,7 +42,7 @@ const dispatch = createEventDispatcher();
     Soweit gegebenenfalls erforderlich, werden Sie von mir, Tobais Wolter, kontaktiert.
     </li>
     <li>
-    Sie können die witzn/Text und ihr Konto jederzeit löschen. Ein Anspruch auf Wiederherstellung etc. besteht nicht.
+    Sie können die Witze und ihr Konto jederzeit löschen. Ein Anspruch auf Wiederherstellung etc. besteht nicht.
     </li>
     </ul>
     <br/>

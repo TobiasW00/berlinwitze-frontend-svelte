@@ -15,7 +15,7 @@ table td
 <div style="border:2px solid black;border-radius:20px; padding:20px;">
 <table>
    		{#each $witzedit.roles as rolle (rolle.id) }	   
-          <tr><td>Name <input type="text" bind:value={rolle.name} /></td><td>Alter <input type="text" style="width:100px;" bind:value={rolle.age} /></td>
+          <tr><td>Name <input type="text" bind:value={rolle.name} /></td>
           <td>Geschlecht
           	<select bind:value={rolle.genre}>
                          <option value=""></option>
